@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         JIRA Self Audit
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @updateURL    https://drive.corp.amazon.com/documents/xkidanie@/Tampermonkey/JIRA_Self_Audit.user.js
-// @downloadURL  https://drive.corp.amazon.com/documents/xkidanie@/Tampermonkey/JIRA_Self_Audit.user.js
+// @version      1.1
+// @updateURL    https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
+// @downloadURL  https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
 // @description  Making Testers life simple
 // @author       Daniel Kingsly (xkidanie)
 // @match        https://issues.labcollab.net/browse/*
