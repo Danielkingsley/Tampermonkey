@@ -1,7 +1,9 @@
 // ==UserScript==
-// @name         JIRA_Self_Audit
+// @name         JIRA Self Audit
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.0
+// @updateURL    https://drive.corp.amazon.com/documents/xkidanie@/Tampermonkey/JIRA_Self_Audit.user.js
+// @downloadURL  https://drive.corp.amazon.com/documents/xkidanie@/Tampermonkey/JIRA_Self_Audit.user.js
 // @description  Making Testers life simple
 // @author       Daniel Kingsly (xkidanie)
 // @match        https://issues.labcollab.net/browse/*
@@ -28,7 +30,7 @@ var is_triaged = document.getElementById("customfield_11302-val");
 var project = document.getElementById("customfield_10704-val");
 var how_found = document.getElementById("customfield_10812-val");
 var devices_affected = document.getElementById("customfield_10400-val");
-var labels = document.getElementsByClassName("labels");
+var labels = document.getElementsByClassName("labels-wrap value editable-field inactive");
 var message = "";
 
     message += "MISSES \n \n";
@@ -112,49 +114,8 @@ var message = "";
 }
 //Jira_self_audit();
 
-function checkForUpdate(in_vid){
-
-    var plugin_url = 'https://MyWebSiteURL/MonaTest.user.js?'+new Date().getTime();
-
-    if ((parseInt(GM_getValue('SUC_last_update', '0')) + 86400000 <= (new Date().getTime()))){
-        try {
-            GM_xmlhttpRequest( {
-                method: 'GET',
-                url: plugin_url,
-                headers: {'Cache-Control': 'no-cache'},
-                onload: function(resp){
-                    var local_version, remote_version, rt, script_name;
-
-                    rt=resp.responseText;
-                    GM_setValue('SUC_last_update', new Date().getTime()+'');
-                    remote_version = parseFloat(/@version\s*(.*?)\s*$/m.exec(rt)[1]);
-                    local_version = parseFloat(GM_getValue('SUC_current_version', '-1'));
-
-                    if(local_version!=-1){
-                        script_name = (/@name\s*(.*?)\s*$/m.exec(rt))[1];
-                        GM_setValue('SUC_target_script_name', script_name);
-
-                        if (remote_version > local_version){
-
-                            if(confirm('There is an update available for the Greasemonkey script "'+script_name+'."\nWould you like to install it now?')){
-                                GM_openInTab(plugin_url);
-                                //window.open(plugin_url,'_blank')
-                                //location.assign(plugin_url);
-                                GM_setValue('SUC_current_version', remote_version);
-                            }
-                        }
-                        else{
-                            GM_log('No update is available for "'+script_name+'"');
-                        }
-                    }
-                    else{
-                        GM_setValue('SUC_current_version', remote_version+'');
-                    }
-                }
-            });
-        }
-        catch (err){
-            GM_log('An error occurred while checking for updates:\n'+err);
-        }
+var arr = []
+var objSelect = document.getElementsByClassName("customfield_10704labels-wrap value editable-field inactive");
+    for (var i = 0; i < objSelect.length; i++) {
+        alert(objSelect.options[i].text);
     }
-}
