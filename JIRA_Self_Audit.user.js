@@ -49,7 +49,7 @@ var message = "";
     }
     if (labels != null) {
         console.log("Labels are added");
-        alert(labels.value);
+        //alert(labels.value);
     }
     else{
         message += "Labels are missing\n";
