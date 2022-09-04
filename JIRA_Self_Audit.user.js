@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JIRA Self Audit
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
 // @downloadURL  https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
 // @description  A Tampermonkey userscript that helps testers to audit their bugs after they raised.
