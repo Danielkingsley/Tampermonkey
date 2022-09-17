@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JIRA Self Audit
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @updateURL    https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
 // @downloadURL  https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
 // @description  A Tampermonkey userscript that helps testers to audit their bugs after they raised.
@@ -40,10 +40,10 @@ var label_list = "";
 var label_found = [];
 var all_label = [];
 
-message += "==========================\n";
-message += toUnicodeVariant("MANDATORY LABELS CHECK \n", 'bold sans');
-message += ("Currently it'll only check for 'vesta-qs' & 'platform-qs'");
-message += "\n==========================\n\n";
+//message += "==========================\n";
+//message += toUnicodeVariant("MANDATORY LABELS CHECK \n", 'bold sans');
+//message += ("Currently it'll only check for 'vesta-qs' & 'platform-qs'");
+//message += "\n==========================\n\n";
 
     //To loop through labels
     for (var i = 0;i < labels.length; i++) {
@@ -52,18 +52,18 @@ message += "\n==========================\n\n";
         label_found.push(all_label[i]);
     }
 
-    if (label_found.includes("platform-qs")){message+="platform-qs label is present \n"} else {message+="platform-qs label is missing \n"}
-    if (label_found.includes("vesta-qs")){message+="vesta-qs label is present \n"} else {message+="vesta-qs label is missing \n"}
+    message += "========\n";
+    message += toUnicodeVariant("MISSES \n", 'bold sans', 'bold');
+    message += "========\n\n";
+
+    if (label_found.includes("platform-qs")){console.log("platform-qs label is present \n")} else {message+="platform-qs label is missing \n"}
+    if (label_found.includes("vesta-qs")){console.log("vesta-qs label is present \n")} else {message+="vesta-qs label is missing \n"}
     if (how_found!==null){
     if (how_found.textContent.trim() == "Regression"){if (label_found.includes("qs-direct")||label_found.includes("qs-indirect")){console.log("QS-direct/indirect label is present \n");} else {message+="QS-direct/indirect label is missing \n"}}
     if (how_found.textContent.trim() == "Regression"){if(label_found.includes("foundinmainline")||label_found.includes("foundinship") ){console.log("foundinship/mainline label is present \n");} else {message+="foundinship/mainline label is missing \n"}}
     if (how_found.textContent.trim() == "Regression"){if(label_found.includes("P0")||label_found.includes("P1")||label_found.includes("P2-P4")||label_found.includes("dct-qs")){console.log("P0/P1/P2/P3/P4 label is present \n");} else {message+="P0/P1/P2/P3/P4 label is missing \n"}}
     if (how_found.textContent.trim() == "Patch"){if(label_found.includes("patch-platform-qs")){console.log("Patch label is present \n");} else {message+="Platform Patch label is missing \n"}}
     }else {console.log("how_found field is missing")}
-
-    message += "\n========\n";
-    message += toUnicodeVariant("MISSES \n", 'bold sans', 'bold');
-    message += "========\n\n";
 
     if (type != null) {
         console.log("Bug Type is added");
