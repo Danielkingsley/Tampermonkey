@@ -52,18 +52,30 @@ var all_label = [];
         label_found.push(all_label[i]);
     }
 
-    message += "========\n";
-    message += toUnicodeVariant("MISSES \n", 'bold sans', 'bold');
-    message += "========\n\n";
+    message += "==========\n";
+    message += toUnicodeVariant("LABEL MISSES \n", 'bold sans', 'bold');
+    message += "==========\n";
 
     if (label_found.includes("platform-qs")){console.log("platform-qs label is present \n")} else {message+="platform-qs label is missing \n"}
     if (label_found.includes("vesta-qs")){console.log("vesta-qs label is present \n")} else {message+="vesta-qs label is missing \n"}
     if (how_found!==null){
     if (how_found.textContent.trim() == "Regression"){if (label_found.includes("qs-direct")||label_found.includes("qs-indirect")){console.log("QS-direct/indirect label is present \n");} else {message+="QS-direct/indirect label is missing \n"}}
     if (how_found.textContent.trim() == "Regression"){if(label_found.includes("foundinmainline")||label_found.includes("foundinship") ){console.log("foundinship/mainline label is present \n");} else {message+="foundinship/mainline label is missing \n"}}
-    if (how_found.textContent.trim() == "Regression"){if(label_found.includes("P0")||label_found.includes("P1")||label_found.includes("P2-P4")||label_found.includes("dct-qs")){console.log("P0/P1/P2/P3/P4 label is present \n");} else {message+="P0/P1/P2/P3/P4 label is missing \n"}}
+    if (how_found.textContent.trim() == "Bug Bash"){if(label_found.includes("Platform-qs-BB")){console.log("Platform-qs-BB label is present \n");} else {message+="Platform-qs-BB label is missing \n"}}
+    if (how_found.textContent.trim() == "Regression" && label_found.includes("qs-direct")){if(label_found.includes("P0")||label_found.includes("P1")||label_found.includes("P2-P4")||label_found.includes("dct-qs")){console.log("P0/P1/P2/P3/P4 label is present \n");} else {message+="P0/P1/P2/P3/P4 label is missing \n"}}
     if (how_found.textContent.trim() == "Patch"){if(label_found.includes("patch-platform-qs")){console.log("Patch label is present \n");} else {message+="Platform Patch label is missing \n"}}
+    //Description Check
+    if($("*:contains('Description')").length > 0)console.log('description is present');
+    if($("*:contains('Steps to repro')").length > 0)console.log('steps to repro is present');
+    if($("*:contains('Timestamp')").length > 0)console.log('timestamp is present');
+    if($("*:contains('DSN')").length > 0)console.log('dsn is present');
+    if($("*:contains('Device type')").length > 0)console.log('device type is present');
+    if($("*:contains('RDCS logs')").length > 0)console.log('rdcs logs is present');
     }else {console.log("how_found field is missing")}
+
+    message += "==========\n";
+    message += toUnicodeVariant("FIELDS MISSES \n", 'bold sans', 'bold');
+    message += "==========\n";
 
     if (type != null) {
         console.log("Bug Type is added");
@@ -113,12 +125,12 @@ var all_label = [];
         message += "isTriaged field is missing\n";
     }
 
-    if (project != null) {
-        console.log("Project name field is updated");
-    }
-    else{
-        message += "Project name field is missing\n";
-    }
+    //if (project != null) {
+    //  console.log("Project name field is updated");
+    //}
+    //else{
+    //    message += "Project name field is missing\n";
+    //}
 
     if (how_found!= null) {
         console.log("How Found? field  is updated");
@@ -133,7 +145,7 @@ var all_label = [];
     else{
         message += "Devices Affected field is missing\n";
     }
-    if (type != null && affected_version != null && labels != null && is_regression != null && severity != null && reproducibitlity != null && is_triaged != null && project != null && how_found != null && devices_affected != null){
+    if (type != null && affected_version != null && labels != null && is_regression != null && severity != null && reproducibitlity != null && is_triaged != null && how_found != null && devices_affected != null){
         message += "All mandatory fields are added\n";
     }
     else{
@@ -153,5 +165,7 @@ var all_label = [];
     if (message){
         alert(message+"\n");
     }
+
+
 }
 //Jira_self_audit();
