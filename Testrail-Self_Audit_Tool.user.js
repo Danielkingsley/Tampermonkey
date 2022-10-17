@@ -74,7 +74,43 @@ setTimeout(function(){alert("Update Build Number!!")}, millisTill10);
                 return false;
             }
         }
-
+        var blocked = 1;
+        var skipped = 1;
+        var failed = 1;
+        var untested = 1;
+        var passed = 1;
+        var running = 1;
+        var caution = 1;
+        var queried = 1;
+        $('.step-result-inner').each(function(index) {
+            if (this.childNodes[1].value === "3") {
+                untested = 0;
+            }
+            else if (this.childNodes[1].value === "5") {
+                failed = 0;
+            }
+            else if (this.childNodes[1].value === "2") {
+                blocked = 0;
+            }
+            else if (this.childNodes[1].value === "6") {
+                skipped = 0;
+            }
+            else if (this.childNodes[1].value === "10") {
+                running = 0;
+            }
+            else if (this.childNodes[1].value === "11") {
+                caution = 0;
+            }
+            else if (this.childNodes[1].value === "8") {
+                queried = 0;
+            }
+        });
+if ($('#addResultStatus').val() === "1") {
+            $('.step-result-inner').each(function(index) {
+                if (this.childNodes[1].value !== "1") {
+                    passed = 0;
+                }
+            });
     }
 }
 }
