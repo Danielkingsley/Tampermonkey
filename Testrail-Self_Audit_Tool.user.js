@@ -2,8 +2,8 @@
 // @name         Testrail-Self Audit Tool
 // @namespace    http://tampermonkey.net/
 // @version      1.3
-// @updateURL    https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
-// @downloadURL  https://github.com/Danielkingsley/Tampermonkey/raw/main/JIRA_Self_Audit.user.js
+// @updateURL    https://github.com/Danielkingsley/Tampermonkey/raw/main/Testrail-Self_Audit_Tool.user.js
+// @downloadURL  https://github.com/Danielkingsley/Tampermonkey/raw/main/Testrail-Self_Audit_Tool.user.js
 // @description  TestRail self audit tool
 // @author       CoRo - VESTA
 // @match        https://testrail.vesta.amazon.dev/index.php?/*
